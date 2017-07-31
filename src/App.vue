@@ -92,4 +92,12 @@
     text-align: center;
     color: #2c3e50;
   }
+
+  @media screen and (min-width: 981px) {
+    .md-layout {
+      width: 40%;
+      margin: 0 auto;
+    }
+  }
+
 </style>
