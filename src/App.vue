@@ -12,25 +12,25 @@
 
   <md-layout md-align="center">
     <md-layout md-align="center" md-flex="100">
-      <md-layout style="margin-top: 30px" md-align="center" md-flex="35">
+      <md-layout style="margin-top: 30px" md-align="center" md-flex="80">
         <todo-counter v-bind:todos="todos"></todo-counter>
       </md-layout>    
     </md-layout>
 
     <md-layout md-align="center" md-flex="100">
-      <md-layout md-align="center" md-flex="35">
+      <md-layout md-align="center" md-flex="80">
         <add-todo></add-todo>
       </md-layout>    
     </md-layout>
 
     <md-layout md-align="center" md-flex="100">
-      <md-layout md-align="center" md-flex="35">
+      <md-layout md-align="center" md-flex="80">
         <show-todos v-bind:todos="todos"></show-todos>
       </md-layout>    
     </md-layout>
 
     <md-layout md-align="center" md-flex="100">
-      <md-layout md-align="center" md-flex="35">
+      <md-layout md-align="center" md-flex="80">
         <remove-todo v-bind:todos="todos"></remove-todo>
       </md-layout>    
     </md-layout>
