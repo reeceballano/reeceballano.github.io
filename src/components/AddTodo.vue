@@ -33,7 +33,7 @@
 						.then(reponse => {
 							console.log('task added')
 							this.addTask = '';
-							this.$router.push('/')
+							this.$router.push('/todo/')
 
 						})
 						.catch(e => {
