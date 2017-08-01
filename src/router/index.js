@@ -34,6 +34,5 @@ export default new Router({
     }
   ],
 
-  base: __dirname,
   mode: 'history',
 })
