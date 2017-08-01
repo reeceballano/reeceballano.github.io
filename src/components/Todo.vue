@@ -52,11 +52,11 @@ export default {
 		updateStatus(id, todoStat) {
 			if(todoStat === true) {
 				this.preUpdate(id, false);
-				this.$router.push('/')
+				this.$router.push('/todo/')
 
 			} else {
 				this.preUpdate(id, true);
-				this.$router.push('/')
+				this.$router.push('/todo/')
 			}
 		},
 
