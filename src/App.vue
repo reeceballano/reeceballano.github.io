@@ -16,7 +16,7 @@
       </md-button>
     </router-link>  
 
-    <router-link to="/">
+    <router-link to="/todo/">
     <md-button class="md-fab md-primary md-fab-bottom-center">
     <md-icon>dialpad</md-icon>
     </md-button>
