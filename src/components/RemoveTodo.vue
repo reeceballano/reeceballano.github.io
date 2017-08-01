@@ -1,7 +1,12 @@
 <template>
-<md-button @click="removeTodo" class="md-fab md-fab-bottom-right">
-  <md-icon>clear</md-icon>
-</md-button>	
+    <md-layout md-align="center" md-flex="100">
+      <md-layout md-align="center" md-flex="80">
+		<md-button @click="removeTodo" class="md-fab md-fab-bottom-right">
+			<md-icon>clear</md-icon>
+		</md-button>
+      </md-layout>    
+    </md-layout>	
+	
 </template>
 
 <script>

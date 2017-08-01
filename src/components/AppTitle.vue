@@ -6,7 +6,7 @@
 	export default {
 		data() {
 			return {
-				appTitle: 'ToDo List',
+				appTitle: 'RealTime App: VueJS',
 			}
 		},
 

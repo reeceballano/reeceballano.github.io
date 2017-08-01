@@ -1,39 +1,29 @@
 <template>
 <div id="app" class="phone-viewport">
-  <md-toolbar md-theme="default">
-    <md-button class="md-icon-button">
-      <md-icon>menu</md-icon>
-    </md-button>
-    <app-title></app-title>
-    <md-button class="md-icon-button">
-      <md-icon>favorite</md-icon>
-    </md-button>
-  </md-toolbar>
+
+  <todo-header></todo-header>
 
   <md-layout md-align="center">
-    <md-layout md-align="center" md-flex="100">
-      <md-layout style="margin-top: 30px" md-align="center" md-flex="80">
-        <todo-counter v-bind:todos="todos"></todo-counter>
-      </md-layout>    
-    </md-layout>
 
-    <md-layout md-align="center" md-flex="100">
-      <md-layout md-align="center" md-flex="80">
-        <add-todo></add-todo>
-      </md-layout>    
-    </md-layout>
+    <todo-counter :todos="todos"></todo-counter>
+    <transition name="page" mode="out-in">   
+      <router-view :todos="todos"></router-view>
+    </transition>  
 
-    <md-layout md-align="center" md-flex="100">
-      <md-layout md-align="center" md-flex="80">
-        <show-todos v-bind:todos="todos"></show-todos>
-      </md-layout>    
-    </md-layout>
+    <router-link to="/add">
+      <md-button class="md-fab md-fab-bottom-left">
+        <md-icon>add</md-icon>
+      </md-button>
+    </router-link>  
 
-    <md-layout md-align="center" md-flex="100">
-      <md-layout md-align="center" md-flex="80">
-        <remove-todo v-bind:todos="todos"></remove-todo>
-      </md-layout>    
-    </md-layout>
+    <router-link to="/">
+    <md-button class="md-fab md-primary md-fab-bottom-center">
+    <md-icon>dialpad</md-icon>
+    </md-button>
+    </router-link>  
+
+    <remove-todo :todos="todos"></remove-todo>
+
   </md-layout>
 </div>  
 </template>
@@ -46,6 +36,7 @@
   import AddTodo from './components/addtodo';
   import RemoveTodo from './components/removetodo';
   import TodoCounter from './components/todocounter';
+  import Header from './components/header';
 
 
   export default {
@@ -56,6 +47,7 @@
       'add-todo': AddTodo,
       'remove-todo': RemoveTodo,
       'todo-counter': TodoCounter,
+      'todo-header': Header,
     },
     data() {
       return {
@@ -92,6 +84,14 @@
     text-align: center;
     color: #2c3e50;
   }
+
+  .page-enter-active, .page-leave-active {
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .page-enter, .page-leave-to {
+    opacity: 0;
+    transform: translateX(-30%);
+  }  
 
   @media screen and (min-width: 981px) {
     .md-layout {

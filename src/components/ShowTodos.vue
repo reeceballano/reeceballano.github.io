@@ -1,14 +1,21 @@
 <template>
-	<md-list>
-		<md-list-item
-			@click="updateStatus(todo.id, todo.status)"
-			v-bind:class="{ active: todo.status }"
-			v-for="todo in todos">	
-			<md-icon v-if="todo.status == true" class="md-accent">sentiment_very_satisfied</md-icon>		
-			<md-icon v-else>sentiment_neutral</md-icon>		
-			<span><label>{{ todo.name }}</label></span>
-		</md-list-item>
-	</md-list>
+    <md-layout class="showTodos" md-align="center" md-flex="100">
+      <md-layout md-align="center" md-flex="80">
+		<md-list>
+			<md-list-item
+				v-bind:class="{ active: todo.status }"
+				v-for="todo in todos">
+				<router-link :to="{ name: 'todo', params: { id: todo.id }}">
+					<md-icon v-if="todo.status == true" class="md-accent">sentiment_very_satisfied</md-icon>	
+					<md-icon v-else>sentiment_neutral</md-icon>		
+					<span><label>{{ todo.name }}</label></span>
+				</router-link>
+			</md-list-item>
+			</md-list>
+      </md-layout>    
+    </md-layout>
+
+
 </template>
 
 
@@ -31,26 +38,6 @@
 			}
 		},
 		methods: {
-			preUpdate(id, todoStat) {
-				axios.patch('https://vue-todo-components.firebaseio.com/todos/' + id + '.json', {
-					status: todoStat,
-				})
-				.then(response => {
-					console.log('task updated');
-				})
-				.catch(e => {
-					this.errors.push(e);
-				}) 
-			},
-
-			updateStatus(id, todoStat) {
-				if(todoStat === true) {
-					this.preUpdate(id, false);
-				} else {
-					this.preUpdate(id, true);
-				}
-			},
-
 		    removeTodo(key) {
 		      let self = this;
 
@@ -136,4 +123,8 @@
 	.el-icon-circle-close:before {
 	    color: #ef3b3b;
 	}	
+
+	.showTodos {
+		margin-top: 30px;
+	}
 </style>

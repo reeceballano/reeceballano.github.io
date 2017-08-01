@@ -1,5 +1,9 @@
 <template>
-	<span class="md-subheading">{{ title }}: {{ todosRemaining }}</span>	
+	<md-layout md-align="center" md-flex="100">
+		<md-layout style="margin-top: 50px" md-align="center" md-flex="80">
+			<span class="md-headline">{{ title }}: {{ todosRemaining }}</span>	
+		</md-layout>    
+	</md-layout>
 </template>
 
 <script>

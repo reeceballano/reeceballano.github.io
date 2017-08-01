@@ -1,7 +1,11 @@
 <template>
-	<md-input-container>
-		<md-input id="addtask" type="text" @keyup.enter.native="addTodo" v-model="addTask" placeholder="Please add your task here!"></md-input>
-	</md-input-container>
+	<md-layout md-align="center" md-flex="100">
+      	<md-layout md-align="center" md-flex="80">
+			<md-input-container>
+				<md-input id="addtask" type="text" @keyup.enter.native="addTodo" v-model="addTask" placeholder="Please add your task here!"></md-input>
+			</md-input-container>      
+		</md-layout>    
+    </md-layout>
 </template>
 
 <script>
@@ -29,6 +33,8 @@
 						.then(reponse => {
 							console.log('task added')
 							this.addTask = '';
+							this.$router.push('/')
+
 						})
 						.catch(e => {
 							this.errors.push(e);
