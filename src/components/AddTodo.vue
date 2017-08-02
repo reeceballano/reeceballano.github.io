@@ -3,6 +3,9 @@
       	<md-layout md-align="center" md-flex="80">
 			<md-input-container>
 				<md-input 
+					v-focus="focused" 
+					@focus="focused = true" 
+					@blur="focused = false"
 					id="addtask" 
 					type="text" 
 					@focusout.native="addTodo" 
@@ -22,15 +25,17 @@
 </template>
 
 <script>
-	
+	import { focus } from 'vue-focus';
 	import axios from 'axios'
 
 	export default {
+		directives: { focus: focus },
 		data() {
 			return {
 				addTask: '',
 				isActive: false,
 				errors: [],
+				focused: true,
 			}
 		},
 

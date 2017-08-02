@@ -11,11 +11,9 @@
 					<span><label>{{ todo.name }}</label></span>
 				</router-link>
 			</md-list-item>
-			</md-list>
+		</md-list>
       </md-layout>
     </md-layout>
-
-
 </template>
 
 

@@ -27,6 +27,9 @@
 			<md-input-container 
 				v-show="showEditor">
 					<md-input 
+						v-focus="focused" 
+						@focus="focused = true" 
+						@blur="focused = false"
 						id="addtask" 
 						ref="myref" 
 						type="text" 
@@ -51,8 +54,10 @@
 <script>
 
 import axios from 'axios'
+import { focus } from 'vue-focus';
 
 export default {
+	directives: { focus: focus },
 	data() {
 		return {
 			id: this.$route.params.id,
@@ -60,6 +65,7 @@ export default {
 			showEditor: false,
 			showNameText: true,
 			newtaskname: '',
+			focused: true,
 		}
 	},
 
