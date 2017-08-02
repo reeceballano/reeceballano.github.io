@@ -12,7 +12,7 @@
 				</router-link>
 			</md-list-item>
 			</md-list>
-      </md-layout>    
+      </md-layout>
     </md-layout>
 
 

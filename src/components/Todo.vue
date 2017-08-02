@@ -1,14 +1,48 @@
 <template>
 	<md-layout md-align="center" md-flex="100">
-      	<md-layout md-align="center" md-flex="80">
+      	<md-layout md-align="left" md-flex="80">
 			<div class="todo">
-				<h5 class="md-subheading">ID: {{ id }} </h5>
-				<h3 class="md-title">Task Name: {{ todoText.name }}</h3>
-			</div>		
+				<h5 class="md-subheading">ID: <strong>{{ id }}</strong> </h5>
+
+				<h5
+					md-align="left"
+					class="md-subheading" 
+					v-show="showNameText" 
+					@click="enableEditor()">
+						Task Name: <strong>{{ todoText.name }}</strong>
+						<small><i>edit</i></small>
+				</h5>
+
+				<h5
+					md-align="left"
+					class="md-subheading" 
+					v-show="showEditor">
+						Task Name: <strong>{{ newtaskname }}</strong>
+				</h5>
+			</div>
+
 		</md-layout> 
 
-		<md-layout md-align="center" md-flex="80">
-			<md-button @click="updateStatus(id, todoText.status)" class="md-raised md-primary">Update Status</md-button>	
+		<md-layout md-align="left" md-flex="80">
+			<md-input-container 
+				v-show="showEditor">
+					<md-input 
+						id="addtask" 
+						ref="myref" 
+						type="text" 
+						@focusout.native="updateTaskName(todoText.name)" 
+						@keyup.enter.native="updateTaskName(todoText.name)" 
+						v-model="newtaskname"
+						 placeholder="New Task Name!">
+					</md-input>
+			</md-input-container> 
+
+			<md-switch 
+				v-model="todoText.status" 
+				@change="updateStatus(todoText.status)" 
+				class="md-primary">Update Status
+			</md-switch>
+	
 		</md-layout>    
     </md-layout>	
 
@@ -23,8 +57,15 @@ export default {
 		return {
 			id: this.$route.params.id,
 			todoText: [],
+			showEditor: false,
+			showNameText: true,
+			newtaskname: '',
 		}
 	},
+
+	mounted: function() {
+	},
+
 	created: function() {
 		this.getInfo()
 	},
@@ -37,9 +78,9 @@ export default {
 	          })
     	},
 
-		preUpdate(id, todoStat) {
-			axios.patch('https://vue-todo-components.firebaseio.com/todos/' + id + '.json', {
-				status: todoStat,
+		preUpdate(status) {
+			axios.patch('https://vue-todo-components.firebaseio.com/todos/' + this.id + '.json', {
+				status: status,
 			})
 			.then(response => {
 				console.log('task updated');
@@ -49,23 +90,50 @@ export default {
 			}) 
 		},
 
-		updateStatus(id, todoStat) {
+		updateStatus(todoStat) {
 			if(todoStat === true) {
-				this.preUpdate(id, false);
-				this.$router.push('/todo/')
+				this.preUpdate(false);
 
 			} else {
-				this.preUpdate(id, true);
-				this.$router.push('/todo/')
+				this.preUpdate(true);
 			}
 		},
 
-		returnHome() {
-		}		
+		updateTaskName() {
+			if(this.newtaskname == '') {
+				console.log('taskname cannot be empty!'); 
+			} else {
+				axios.patch('https://vue-todo-components.firebaseio.com/todos/' + this.id + '.json', {
+					name: this.newtaskname,
+				})
+				.then(response => {
+					console.log('task updated');
+					this.$router.push('/todo/');
+				})
+				.catch(e => {
+					this.errors.push(e);
+				}) 
+			}
+		},
+
+		enableEditor() {
+			this.$nextTick(function() {
+				this.$refs.myref.$el.focus();
+            });
+
+			this.showNameText = false;
+			this.showEditor = true;
+
+		},
+	
 	}
 }
 
 </script>
 
 <style scoped>
+	.md-subheading,
+	.md-headline {
+		text-align: left !important;
+	}
 </style>

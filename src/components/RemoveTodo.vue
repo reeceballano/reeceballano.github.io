@@ -36,6 +36,7 @@
 				for(let x in todoTrue) {
 					axios.delete('https://vue-todo-components.firebaseio.com/todos/' + todoTrue[x].id + '.json')
 						.then(response => {
+							this.$router.push('/todo/');
 						})
 						.catch(e => {
 							console.log(e)

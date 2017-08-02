@@ -4,7 +4,6 @@
   <todo-header></todo-header>
 
   <md-layout md-align="center">
-
     <todo-counter :todos="todos"></todo-counter>
     <transition name="page" mode="out-in">   
       <router-view :todos="todos"></router-view>
@@ -23,7 +22,6 @@
     </router-link>  
 
     <remove-todo :todos="todos"></remove-todo>
-
   </md-layout>
 </div>  
 </template>
