@@ -2,8 +2,21 @@
 	<md-layout md-align="center" md-flex="100">
       	<md-layout md-align="center" md-flex="80">
 			<md-input-container>
-				<md-input id="addtask" type="text" @keyup.enter.native="addTodo" v-model="addTask" placeholder="Please add your task here!"></md-input>
-			</md-input-container>      
+				<md-input 
+					id="addtask" 
+					type="text" 
+					@focusout.native="addTodo" 
+					@keyup.enter.native="addTodo" 
+					v-model="addTask" 
+					placeholder="Please add your task here!">
+				</md-input>
+			</md-input-container>
+
+			<md-button 
+				@click="addTodo"
+				class="md-raised md-accent">
+				Save
+			</md-button>      
 		</md-layout>    
     </md-layout>
 </template>
