@@ -18,7 +18,7 @@
 	    },
 		data() {
 			return {
-				title: 'Task Remaining',
+				title: 'Tasks Remaining',
 				errors: [],
 			}
 		},
